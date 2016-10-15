@@ -52,7 +52,6 @@ public class PlaceTableDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -96,5 +95,5 @@ public class PlaceTableDao {
         }
         return placeList;
     }
-    
+
 }
