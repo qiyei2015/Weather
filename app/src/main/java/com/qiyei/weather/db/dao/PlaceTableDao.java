@@ -3,10 +3,12 @@ package com.qiyei.weather.db.dao;
 import android.content.Context;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.qiyei.weather.db.DatabaseHelper;
 import com.qiyei.weather.db.bean.Place;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +44,18 @@ public class PlaceTableDao {
     }
 
     /**
+     * 更新地方
+     */
+    public void updatePlace(Place place){
+        try {
+            mPlaceTableLongDao.update(place);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * 删除地方
      * @param place
      */
@@ -66,4 +80,21 @@ public class PlaceTableDao {
         }
         return placeList;
     }
+
+    /**
+     * 根据类型查询地方
+     * @param parentName
+     * @return
+     */
+    public List<Place> queryPlace(String parentName){
+        List<Place> placeList = new ArrayList<>();
+        QueryBuilder<Place,Long> builder = mPlaceTableLongDao.queryBuilder();
+        try {
+            placeList = builder.where().eq("parentName",parentName).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return placeList;
+    }
+    
 }
