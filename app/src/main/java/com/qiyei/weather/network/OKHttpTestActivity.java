@@ -67,7 +67,7 @@ public class OKHttpTestActivity extends BaseActivity {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                final String result = response.body().toString();
+                final String result = response.body().string();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
